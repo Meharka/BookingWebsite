@@ -1,2 +1,2 @@
 # Projects
-# These are project I have made in-class. 
+# Here are all project made by me, Japleen Jaria(MeharKa). 
