@@ -1,2 +1,1 @@
-# Projects
-# Here are all project made by me, Japleen Jaria(MeharKa). 
+# All projects can be found here;
