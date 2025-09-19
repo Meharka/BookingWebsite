@@ -1,0 +1,167 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // provider = "sqlite"
+  // url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Hotel {
+  id          Int        @id @default(autoincrement())
+  name        String
+  logo        String
+  address     String
+  cityId      String     @default("Unknown")
+  city        String
+  star_rating Int
+  images      Json?
+  ownerId     Int
+  bookings    HotelBooking[]
+  owner       User @relation(fields: [ownerId], references: [id])
+  room_types  Room[]
+}
+
+model HotelBooking {
+  id                Int      @id @default(autoincrement())
+  status            BookingStatus
+  createdAt         DateTime    @default(now())
+
+  hotelId     Int?
+  hotel       Hotel?    @relation(fields: [hotelId], references: [id])
+  check_in    DateTime?
+  check_out   DateTime?
+  roomId      Int?
+  room        Room?   @relation(fields: [roomId], references: [id])
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+
+
+  bookingId Int?
+  booking   Booking?  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+}
+
+model Room {
+  id              Int       @id @default(autoincrement())
+  name            String
+  available       Int   @default(1)
+  price_per_night Float
+  amenities       String
+  images          Json?
+  hotelId         Int
+  bookings        HotelBooking[]
+  hotel           Hotel     @relation(fields: [hotelId], references: [id])
+}
+
+model FlightBooking {
+  id                Int      @id @default(autoincrement())
+  roundTrip         Boolean
+  status            BookingStatus
+  flights           Flight[]  @relation("BookingFlights") // Many-to-many relationship with Flight
+  bookingId         Int?
+  booking           Booking?   @relation( fields: [bookingId], references: [id], onDelete: Cascade)
+  createdAt         DateTime    @default(now())
+  userId            Int
+  user              User    @relation(fields: [userId], references: [id])
+  reference         String  @default("")
+
+}
+
+model Booking{
+  id          Int                       @id @default(autoincrement())
+  flightBookings    FlightBooking[]     //@relation("BookingAFlight")
+  hotelBookings     HotelBooking[]      //@relation("BookingAHotel")
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  UNKNOWN
+}
+
+// From AFS documentation
+model Flight {
+  id               String      @id @default(uuid())
+  flightNumber     String
+  departureTime    DateTime    // Date and time of departure
+  arrivalTime      DateTime    // Date and time of arrival
+  duration         Float       
+  price            Float       
+  currency         String      @default("USD") // Currency for the price
+  availableSeats   Int
+  status           String
+  // date             DateTime    @default(now())
+  type             String      @default("ONE-WAY")
+  originId         String      // Foreign key for origin airport
+  origin           Airport     @relation("FlightOrigin", fields: [originId], references: [id])
+  destinationId    String      // Foreign key for destination airport
+  destination      Airport     @relation("FlightDestination", fields: [destinationId], references: [id])
+  bookings         FlightBooking[]   @relation("BookingFlights")
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  @@index([originId, destinationId, departureTime], name: "flight_search_index") // Optimized search index
+  @@map("flights")
+}
+
+
+model User {
+  id              Int            @id @default(autoincrement())
+  password        String
+  first_name      String         @default("")
+  last_name       String         @default("")
+  passportNumber  String         @default("")
+  email           String         @unique
+  phone_number    String
+  role            String         @default("VISITOR")
+  hotels          Hotel[]
+  notifications   Notification[]
+  flight_bookings FlightBooking[]
+  hotelBooking    HotelBooking[]
+}
+
+model Notification {
+  id      Int         @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  userId  Int?
+  message String
+  isRead  Boolean     @default(false)
+  user    User?        @relation(fields: [userId], references: [id])
+  creator String      @default("")
+}
+
+// From AFS documentation
+
+model Airport {
+  id          String   @id @default(uuid())
+  code        String   @unique // IATA or ICAO airport code (e.g., 'JFK')
+  name        String   // Full name of the airport (e.g., 'John F. Kennedy International Airport')
+  city        String
+  country     String   // Country where the airport is located
+  departures  Flight[]  @relation("FlightOrigin")
+  arrivals    Flight[]  @relation("FlightDestination")
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("airports")
+}
+
+model City {
+  id   String @id @default(uuid())
+  name String
+  country String
+}

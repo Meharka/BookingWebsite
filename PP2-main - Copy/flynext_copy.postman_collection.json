@@ -1,0 +1,1517 @@
+{
+	"info": {
+		"_postman_id": "094e88aa-4d4b-4569-bb6e-6659e46535a7",
+		"name": "flynext Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41802146",
+		"_collection_link": "https://lively-satellite-297062.postman.co/workspace/My-Workspace~18c67242-b594-4738-824d-8e9a1ec5c0e0/collection/41802146-094e88aa-4d4b-4569-bb6e-6659e46535a7?action=share&source=collection_link&creator=41802146"
+	},
+	"item": [
+		{
+			"name": "Hotel Search",
+			"item": [
+				{
+					"name": "Location Filter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/hotels?check_in=2025-03-10&check_out=2025-03-15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "check_in",
+									"value": "2025-03-10"
+								},
+								{
+									"key": "check_out",
+									"value": "2025-03-15"
+								},
+								{
+									"key": "location",
+									"value": "Cityville",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Price Filter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/hotels?city=Malibu&check_in=2025-03-15&check_out=2025-03-20&min_price=100&max_price=600",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "Malibu"
+								},
+								{
+									"key": "check_in",
+									"value": "2025-03-15"
+								},
+								{
+									"key": "check_out",
+									"value": "2025-03-20"
+								},
+								{
+									"key": "min_price",
+									"value": "100"
+								},
+								{
+									"key": "max_price",
+									"value": "600"
+								}
+							]
+						},
+						"description": "Hotel search with min and max price filter"
+					},
+					"response": []
+				},
+				{
+					"name": "Star Rating Filter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels?location=Malibu&check_in=2025-03-15&check_out=2025-03-20&star_rating=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "Malibu"
+								},
+								{
+									"key": "check_in",
+									"value": "2025-03-15"
+								},
+								{
+									"key": "check_out",
+									"value": "2025-03-20"
+								},
+								{
+									"key": "star_rating",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Hotel search with star rating filter"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter with no results",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/hotels?location=Aspen&check_in=2025-03-15&check_out=2025-03-20&star_rating=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"hotels"
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "Aspen"
+								},
+								{
+									"key": "check_in",
+									"value": "2025-03-15"
+								},
+								{
+									"key": "check_out",
+									"value": "2025-03-20"
+								},
+								{
+									"key": "star_rating",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Hotel search location filter"
+					},
+					"response": []
+				},
+				{
+					"name": "View Detailed Hotel Information",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/hotels/1/rooms?check_in=2025-03-20&check_out=2025-03-21",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"hotels",
+								"1",
+								"rooms"
+							],
+							"query": [
+								{
+									"key": "check_in",
+									"value": "2025-03-20"
+								},
+								{
+									"key": "check_out",
+									"value": "2025-03-21"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Create user successfully",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Veda\",\r\n  \"last_name\": \"M\",\r\n  \"email\": \"v@a.com\",\r\n  \"password\": \"c1234\",\r\n  \"phone_number\": \"5551237232\", \r\n  \"role\": \"HOTEL_OWNER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/signup",
+						"description": "New user signup\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login successfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc0MTkwNjc3NywiZXhwIjoxNzQyNzcwNzc3fQ.oQS6fAshIs2sfz6KiNUEvyA6_qmbuE5K9YB5WZW0UK4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"m@a.com\",\r\n  \"password\": \"m1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/login",
+						"description": "Successful login"
+					},
+					"response": []
+				},
+				{
+					"name": "Login unsuccessful: invalid password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"jsmith@example.com\",\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/login",
+						"description": "Incorrect password"
+					},
+					"response": []
+				},
+				{
+					"name": "Update profile successfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"John\",\r\n  \"last_name\": \"Doe\",\r\n  \"email\": \"newemail@example.com\",\r\n  \"phone_number\": \"9876543210\",\r\n  \"profile_picture\": \"https://images.pexels.com/photos/85773/pexels-photo-85773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/1",
+						"description": "Successful profile update"
+					},
+					"response": []
+				},
+				{
+					"name": "Successful Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/8/logout?userid=8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"8",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hotel Management",
+			"item": [
+				{
+					"name": "Create new hotel successfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Sunset Beach Resort\",\r\n  \"logo\": \"https://example.com/sunset-logo.png\",\r\n  \"address\": \"456 Beach Ave, Malibu\",\r\n  \"city\": \"Malibu\",\r\n  \"star_rating\": 5,\r\n  \"images\": [\r\n    \"https://example.com/sunset1.jpg\",\r\n    \"https://example.com/sunset2.jpg\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/1/hotels",
+						"description": "Create new hotel successfully"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new hotel unsuccessfully if not logged in",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"The Grand Plaza\",\r\n  \"logo\": \"https://example.com/grandplaza-logo.png\",\r\n  \"address\": \"456 King St, New York\",\r\n  \"city\": \"New York\",\r\n  \"star_rating\": 5,\r\n  \"images\": [\r\n    \"https://example.com/grandplaza1.jpg\",\r\n    \"https://example.com/grandplaza2.jpg\",\r\n    \"https://example.com/grandplaza3.jpg\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/4/hotels",
+						"description": "Create new hotel successfully"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new room as authenticated hotel owner successfully",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"hotelId\": 1,\r\n  \"name\": \"Basic Single Room\",\r\n  \"price_per_night\": 500.00,\r\n  \"amenities\": \"None\",\r\n  \"images\": [\r\n    \"https://example.com/images/penthouse-suite-1.jpg\",\r\n    \"https://example.com/images/penthouse-suite-2.jpg\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/1/hotels/1/rooms"
+					},
+					"response": []
+				},
+				{
+					"name": "Update room availability",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"hotelId\": 1,\r\n    \"roomId\": 1,\r\n    \"available\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/1/hotels/1/rooms/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Search hotel bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings?hotelId=1&date=2025-03-11&room_type=Basic Single Room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"{hotelId}",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "hotelId",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "2025-03-11"
+								},
+								{
+									"key": "room_type",
+									"value": "Basic Single Room"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\": 9,\r\n    \"bookingId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/1/hotels/1/bookings/1?hotelId=1&bookingId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"hotels",
+								"1",
+								"bookings",
+								"1"
+							],
+							"query": [
+								{
+									"key": "hotelId",
+									"value": "1"
+								},
+								{
+									"key": "bookingId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search room availability for specific date range",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/10/hotels/6/availability?startDate=2025-03-10&endDate=2025-03-15&hotelId=1&userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"10",
+								"hotels",
+								"6",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-03-10"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-03-15"
+								},
+								{
+									"key": "hotelId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flight Search",
+			"item": [
+				{
+					"name": "Successful Basic Flight Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/flights?origin=Chicago&destination=Toronto&date=2025-03-17&type=ONE-WAY",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"flights"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Chicago"
+								},
+								{
+									"key": "destination",
+									"value": "Toronto"
+								},
+								{
+									"key": "date",
+									"value": "2025-03-17"
+								},
+								{
+									"key": "type",
+									"value": "ONE-WAY"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Successful Round Trip Flight Search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Outbound Flight</th>\r",
+									"        <th>Return Flight</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>\r",
+									"            <table class=\"tftable\" border=\"1\">\r",
+									"                <tr>\r",
+									"                    <th>Flight Number</th>\r",
+									"                    <th>Departure Time</th>\r",
+									"                    <th>Arrival Time</th>\r",
+									"                    <th>Origin</th>\r",
+									"                    <th>Destination</th>\r",
+									"                    <th>Price</th>\r",
+									"                    <th>Currency</th>\r",
+									"                    <th>Available Seats</th>\r",
+									"                    <th>Status</th>\r",
+									"                    <th>Airline Code</th>\r",
+									"                    <th>Airline Name</th>\r",
+									"                </tr>\r",
+									"                {{#each response.[0].outboundFlight.flights}}\r",
+									"                    <tr>\r",
+									"                        <td>{{flightNumber}}</td>\r",
+									"                        <td>{{departureTime}}</td>\r",
+									"                        <td>{{arrivalTime}}</td>\r",
+									"                        <td>{{origin.name}} ({{origin.city}}, {{origin.country}})</td>\r",
+									"                        <td>{{destination.name}} ({{destination.city}}, {{destination.country}})</td>\r",
+									"                        <td>{{price}}</td>\r",
+									"                        <td>{{currency}}</td>\r",
+									"                        <td>{{availableSeats}}</td>\r",
+									"                        <td>{{status}}</td>\r",
+									"                        <td>{{airline.code}}</td>\r",
+									"                        <td>{{airline.name}}</td>\r",
+									"                    </tr>\r",
+									"                {{/each}}\r",
+									"            </table>\r",
+									"        </td>\r",
+									"        <td>\r",
+									"            <table class=\"tftable\" border=\"1\">\r",
+									"                <tr>\r",
+									"                    <th>Flight Number</th>\r",
+									"                    <th>Departure Time</th>\r",
+									"                    <th>Arrival Time</th>\r",
+									"                    <th>Origin</th>\r",
+									"                    <th>Destination</th>\r",
+									"                    <th>Price</th>\r",
+									"                    <th>Currency</th>\r",
+									"                    <th>Available Seats</th>\r",
+									"                    <th>Status</th>\r",
+									"                    <th>Airline Code</th>\r",
+									"                    <th>Airline Name</th>\r",
+									"                </tr>\r",
+									"                {{#each response.[0].returnFlight.flights}}\r",
+									"                    <tr>\r",
+									"                        <td>{{flightNumber}}</td>\r",
+									"                        <td>{{departureTime}}</td>\r",
+									"                        <td>{{arrivalTime}}</td>\r",
+									"                        <td>{{origin.name}} ({{origin.city}}, {{origin.country}})</td>\r",
+									"                        <td>{{destination.name}} ({{destination.city}}, {{destination.country}})</td>\r",
+									"                        <td>{{price}}</td>\r",
+									"                        <td>{{currency}}</td>\r",
+									"                        <td>{{availableSeats}}</td>\r",
+									"                        <td>{{status}}</td>\r",
+									"                        <td>{{airline.code}}</td>\r",
+									"                        <td>{{airline.name}}</td>\r",
+									"                    </tr>\r",
+									"                {{/each}}\r",
+									"            </table>\r",
+									"        </td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json()};\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/flights?origin=Toronto&destination=Atlanta&date=2024-11-18&type=ROUND-TRIP",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"flights"
+							],
+							"query": [
+								{
+									"key": "origin",
+									"value": "Toronto"
+								},
+								{
+									"key": "destination",
+									"value": "Atlanta"
+								},
+								{
+									"key": "date",
+									"value": "2024-11-18"
+								},
+								{
+									"key": "type",
+									"value": "ROUND-TRIP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Details of Specific Flight",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users/{userid}/flights/20036a89-f4ff-4359-8b6e-306ea6584a8c"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings Hotel",
+			"item": [
+				{
+					"name": "Create New Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"check_in\": \"2025-03-11\",\r\n  \"check_out\": \"2025-03-15\",\r\n  \"hotelId\": 1,\r\n  \"roomId\": 1,\r\n  \"userId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Booking No rooms available",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc0MTkxMjIxNywiZXhwIjoxNzQyNzc2MjE3fQ.P7cvkcfbL3QYncXFkLe9sr_MFOqC1Kn8lZkyTjVkr0Q"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"check_in\": \"2025-03-11\",\r\n  \"check_out\": \"2025-03-15\",\r\n  \"hotelId\": 1,\r\n  \"roomId\": 1,\r\n  \"userId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve a booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/?userId=1&bookingId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"{hotelId}",
+								"bookings",
+								"{bookingid}",
+								""
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								},
+								{
+									"key": "bookingId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0MjY3MzMyMywiZXhwIjoxNzQzNTM3MzIzfQ.bxZTdbA-CWAUFGyaDUXv-h1MYWauxywl_6oCWkZOZxA"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/cancel?hotelId=1&bookingId=7&userId=2&role=USER",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"{hotelId}",
+								"bookings",
+								"{bookingid}",
+								"cancel"
+							],
+							"query": [
+								{
+									"key": "hotelId",
+									"value": "1"
+								},
+								{
+									"key": "bookingId",
+									"value": "7"
+								},
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "role",
+									"value": "USER"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings Flight",
+			"item": [
+				{
+					"name": "Booking a oneway flight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departureIDS\": [\"daae71fb-2d6e-4ce1-a9d3-2adcb5ac025c\", \"7e3271c4-a7ee-4526-8df7-68698dfe2cdc\"],\r\n    \"returnIDS\": [],\r\n    \"roundTrip\": \"false\"\r\n    //\"userId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/{userId}/flights/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "checking if flight exists",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"key": "x-api-key",
+								"value": "6059305f870693b3539191e685362d05e4ac85960ff591900d3ca1cb2ed462bd"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://advanced-flights-system.replit.app/api/flights/20036a89-f4ff-4359-8b6e-306ea6584a8c"
+					},
+					"response": []
+				},
+				{
+					"name": "booking roundtrip",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Flight Number</th>\r",
+									"        <th>Departure Time</th>\r",
+									"        <th>Arrival Time</th>\r",
+									"        <th>Duration</th>\r",
+									"        <th>Price</th>\r",
+									"        <th>Currency</th>\r",
+									"        <th>Available Seats</th>\r",
+									"        <th>Status</th>\r",
+									"        <th>Type</th>\r",
+									"        <th>Origin</th>\r",
+									"        <th>Destination</th>\r",
+									"    </tr>\r",
+									"    \r",
+									"    {{#each response.m}}\r",
+									"        <tr>\r",
+									"            <td>{{flightNumber}}</td>\r",
+									"            <td>{{departureTime}}</td>\r",
+									"            <td>{{arrivalTime}}</td>\r",
+									"            <td>{{duration}}</td>\r",
+									"            <td>{{price}}</td>\r",
+									"            <td>{{currency}}</td>\r",
+									"            <td>{{availableSeats}}</td>\r",
+									"            <td>{{status}}</td>\r",
+									"            <td>{{type}}</td>\r",
+									"            <td>{{origin.city}}, {{origin.country}}</td>\r",
+									"            <td>{{destination.city}}, {{destination.country}}</td>\r",
+									"        </tr>\r",
+									"    {{/each}}\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return {response: pm.response.json()}\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"departureIDS\": [\"20036a89-f4ff-4359-8b6e-306ea6584a8c\", \"d7268d70-317b-420f-bbba-e82e4cb882b0\"],\r\n    // \"returnIDS\" : [\"72d53987-3a72-47da-9026-e8a2674f3907\",\"641e8d6e-6310-492e-b0c4-3f1d57a23f29\"],\r\n    \"departureIDS\": [\"cb2dc646-1f67-4e11-9b26-58f483542646\", \"65a9a89a-1e43-4992-b499-a548b3d8f659\"],\r\n    \"returnIDS\" : [\"7e3271c4-a7ee-4526-8df7-68698dfe2cdc\", \"c6d725f8-2ef5-468e-8e13-6c70c98efcff\"],\r\n    \"roundTrip\":\"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/{userId}/flights/bookings"
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve a booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/flights/bookings/{bookingid}?bookingId=1&userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"flights",
+								"bookings",
+								"{bookingid}"
+							],
+							"query": [
+								{
+									"key": "bookingId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"item": [
+				{
+					"name": "checkout flight booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    //\"booking_id\": 7,\r\n    \"cardNum\": \"4111 1111 1111 1111\",\r\n    \"cardExpiry\": \"2026-03-15\",\r\n    \"passportNumber\": \"123456789\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/flights/bookings/{bookingid}/checkout/?booking_id=13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"flights",
+								"bookings",
+								"{bookingid}",
+								"checkout",
+								""
+							],
+							"query": [
+								{
+									"key": "booking_id",
+									"value": "13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkout hotel booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0MjY3MzMyMywiZXhwIjoxNzQzNTM3MzIzfQ.bxZTdbA-CWAUFGyaDUXv-h1MYWauxywl_6oCWkZOZxA"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"booking_id\": 6,\r\n    \"cardNum\": \"4111 1111 1111 1111\",\r\n    \"cardExpiry\": \"2026-03-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/{hotelid}/bookings/{bookingid}/checkout/?booking_id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"{hotelid}",
+								"bookings",
+								"{bookingid}",
+								"checkout",
+								""
+							],
+							"query": [
+								{
+									"key": "booking_id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Suggestions",
+			"item": [
+				{
+					"name": "Giving hotel suggestions when flight booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/flights/suggestion?city=New York&date1=2025-03-20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"flights",
+								"suggestion"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "New York"
+								},
+								{
+									"key": "date1",
+									"value": "2025-03-20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flight suggestion when hotel booking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/suggestion?destination=Toronto&date=2025-03-17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"suggestion"
+							],
+							"query": [
+								{
+									"key": "destination",
+									"value": "Toronto"
+								},
+								{
+									"key": "date",
+									"value": "2025-03-17"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pdf Invoice",
+			"item": [
+				{
+					"name": "getting invoice for flight booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjQ5Nzc5OSwiZXhwIjoxNzQzMzYxNzk5fQ.6wF6UzdxrBRx05JaMYnB9IGbx0gbiEnfvl6zdIyU1Ho"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/flights/bookings/{bookingid}/invoice/?bookingId=1&userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"flights",
+								"bookings",
+								"{bookingid}",
+								"invoice",
+								""
+							],
+							"query": [
+								{
+									"key": "bookingId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getting invoice for hotel booking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/invoice/?bookingId=1&userId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userId}",
+								"hotels",
+								"{hotelId}",
+								"bookings",
+								"{bookingid}",
+								"invoice",
+								""
+							],
+							"query": [
+								{
+									"key": "bookingId",
+									"value": "1"
+								},
+								{
+									"key": "userId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjU4MjY1MiwiZXhwIjoxNzQzNDQ2NjUyfQ.dNloCdIzHKRQuSBqYsn-eCz3zJrgHO8gENkMUigzHzo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/notification?userid=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"notification"
+							],
+							"query": [
+								{
+									"key": "userid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updating notif",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc0MjU4MjY1MiwiZXhwIjoxNzQzNDQ2NjUyfQ.dNloCdIzHKRQuSBqYsn-eCz3zJrgHO8gENkMUigzHzo"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/{userid}/notification?notifid=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"{userid}",
+								"notification"
+							],
+							"query": [
+								{
+									"key": "notifid",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTc0MTkxMjIxNywiZXhwIjoxNzQyNzc2MjE3fQ.P7cvkcfbL3QYncXFkLe9sr_MFOqC1Kn8lZkyTjVkr0Q"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

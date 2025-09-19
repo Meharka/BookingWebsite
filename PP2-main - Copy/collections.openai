@@ -1,0 +1,639 @@
+openapi: 3.0.3
+info:
+  title: flynext
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://localhost
+paths:
+  /api/users/{userid}/hotels:
+    get:
+      tags:
+        - Hotel Search
+      summary: Location Filter
+      description: Location Filter
+      operationId: locationFilter
+      parameters:
+        - name: check_in
+          in: query
+          schema:
+            type: string
+            example: '2025-03-10'
+        - name: check_out
+          in: query
+          schema:
+            type: string
+            example: '2025-03-15'
+        - name: location
+          in: query
+          schema:
+            type: string
+            example: Cityville
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Malibu
+        - name: min_price
+          in: query
+          schema:
+            type: string
+            example: '0'
+        - name: max_price
+          in: query
+          schema:
+            type: string
+            example: '300'
+        - name: star_rating
+          in: query
+          schema:
+            type: string
+            example: '1'
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+    parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels:
+    get:
+      tags:
+        - Hotel Search
+      summary: Star Rating Filter
+      description: Hotel search with star rating filter
+      operationId: starRatingFilter
+      parameters:
+        - name: location
+          in: query
+          schema:
+            type: string
+            example: Malibu
+        - name: check_in
+          in: query
+          schema:
+            type: string
+            example: '2025-03-15'
+        - name: check_out
+          in: query
+          schema:
+            type: string
+            example: '2025-03-20'
+        - name: star_rating
+          in: query
+          schema:
+            type: string
+            example: '5'
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userid}/hotels/1/rooms:
+    get:
+      tags:
+        - Hotel Search
+      summary: View Detailed Hotel Information
+      description: View Detailed Hotel Information
+      operationId: viewDetailedHotelInformation
+      parameters:
+        - name: check_in
+          in: query
+          schema:
+            type: string
+            example: '2025-03-20'
+        - name: check_out
+          in: query
+          schema:
+            type: string
+            example: '2025-03-21'
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+    parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/8/logout:
+    post:
+      tags:
+        - Accounts
+      summary: Successful Logout
+      description: Successful Logout
+      operationId: successfulLogout
+      parameters:
+        - name: userid
+          in: query
+          schema:
+            type: string
+            example: '8'
+      responses:
+        '200':
+          description: ''
+  /api/users/{userId}/hotels/{hotelId}/bookings:
+    get:
+      tags:
+        - Hotel Management
+      summary: Search hotel bookings
+      description: Search hotel bookings
+      operationId: searchHotelBookings
+      parameters:
+        - name: hotelId
+          in: query
+          schema:
+            type: string
+            example: '6'
+        - name: date
+          in: query
+          schema:
+            type: string
+            example: '2025-03-11'
+        - name: room_type
+          in: query
+          schema:
+            type: string
+            example: Basic Single Room
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: hotelId
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/3/hotels/6/bookings/5:
+    delete:
+      tags:
+        - Hotel Management
+      summary: Delete a booking
+      description: Delete a booking
+      operationId: deleteABooking
+      parameters:
+        - name: hotelId
+          in: query
+          schema:
+            type: string
+            example: '6'
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '5'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookingId:
+                  type: number
+                  example: 1
+                hotelId:
+                  type: number
+                  example: 9
+            examples:
+              Delete a booking:
+                value:
+                  bookingId: 1
+                  hotelId: 9
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/users/10/hotels/6/availability:
+    get:
+      tags:
+        - Hotel Management
+      summary: Search room availability for specific date range
+      description: Search room availability for specific date range
+      operationId: searchRoomAvailabilityForSpecificDateRange
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            example: '2025-03-10'
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            example: '2025-03-15'
+        - name: hotelId
+          in: query
+          schema:
+            type: string
+            example: '6'
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '10'
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/users/{userid}/flights:
+    get:
+      tags:
+        - Flight Search
+      summary: Successful Basic Flight Search
+      description: Successful Basic Flight Search
+      operationId: successfulBasicFlightSearch
+      parameters:
+        - name: origin
+          in: query
+          schema:
+            type: string
+            example: FRA
+        - name: destination
+          in: query
+          schema:
+            type: string
+            example: Toronto
+        - name: date
+          in: query
+          schema:
+            type: string
+            example: '2025-03-17'
+        - name: type
+          in: query
+          schema:
+            type: string
+            example: ONE-WAY
+      responses:
+        '200':
+          description: ''
+      security:
+        - {}
+    parameters:
+      - name: userid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/:
+    get:
+      tags:
+        - Bookings Hotel
+      summary: retrieve a booking
+      description: retrieve a booking
+      operationId: retrieveABooking
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '3'
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '1'
+      requestBody:
+        content:
+          application/json:
+            examples:
+              retrieve a booking:
+                value: ''
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: hotelId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/cancel:
+    put:
+      tags:
+        - Bookings Hotel
+      summary: cancel booking
+      description: cancel booking
+      operationId: cancelBooking
+      parameters:
+        - name: hotelId
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '1'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: hotelId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/flights/bookings/{bookingid}:
+    get:
+      tags:
+        - Bookings Flight
+      summary: retrieve a booking
+      description: retrieve a booking
+      operationId: retrieveABooking1
+      parameters:
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '6'
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '1'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/flights/bookings/{bookingid}/checkout/:
+    put:
+      tags:
+        - Checkout
+      summary: checkout flight booking
+      description: checkout flight booking
+      operationId: checkoutFlightBooking
+      parameters:
+        - name: booking_id
+          in: query
+          schema:
+            type: string
+            example: '6'
+      requestBody:
+        content:
+          application/json:
+            examples:
+              checkout flight booking:
+                value: "{\r\n    // \"booking_id\": 6,\r\n    \"cardNum\": \"4111 1111 1111 1111\",\r\n    \"cardExpiry\": \"2026-03-15\",\r\n    \"passportNumber\": \"123456789\"\r\n}\r\n"
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels/{hotelid}/bookings/{bookingid}/checkout/:
+    put:
+      tags:
+        - Checkout
+      summary: checkout hotel booking
+      description: checkout hotel booking
+      operationId: checkoutHotelBooking
+      parameters:
+        - name: booking_id
+          in: query
+          schema:
+            type: string
+            example: '1'
+      requestBody:
+        content:
+          application/json:
+            examples:
+              checkout hotel booking:
+                value: "{\r\n    // \"booking_id\": 6,\r\n    \"cardNum\": \"4111 1111 1111 1111\",\r\n    \"cardExpiry\": \"2026-03-15\"\r\n}"
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: hotelid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/flights/suggestion:
+    get:
+      tags:
+        - Suggestions
+      summary: Giving hotel suggestions when flight booking
+      description: Giving hotel suggestions when flight booking
+      operationId: givingHotelSuggestionsWhenFlightBooking
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: New York
+        - name: date1
+          in: query
+          schema:
+            type: string
+            example: '2025-03-20'
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Giving hotel suggestions when flight booking:
+                value: ''
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels/suggestion:
+    get:
+      tags:
+        - Suggestions
+      summary: flight suggestion when hotel booking
+      description: flight suggestion when hotel booking
+      operationId: flightSuggestionWhenHotelBooking
+      parameters:
+        - name: destination
+          in: query
+          schema:
+            type: string
+            example: Toronto
+        - name: date
+          in: query
+          schema:
+            type: string
+            example: '2025-03-17'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/flights/bookings/{bookingid}/invoice/:
+    get:
+      tags:
+        - Pdf Invoice
+      summary: getting invoice for flight booking
+      description: getting invoice for flight booking
+      operationId: gettingInvoiceForFlightBooking
+      parameters:
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '6'
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '1'
+      requestBody:
+        content:
+          application/json:
+            examples:
+              getting invoice for flight booking:
+                value: ''
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/users/{userId}/hotels/{hotelId}/bookings/{bookingid}/invoice/:
+    get:
+      tags:
+        - Pdf Invoice
+      summary: getting invoice for hotel booking
+      description: getting invoice for hotel booking
+      operationId: gettingInvoiceForHotelBooking
+      parameters:
+        - name: bookingId
+          in: query
+          schema:
+            type: string
+            example: '1'
+        - name: userId
+          in: query
+          schema:
+            type: string
+            example: '3'
+      responses:
+        '200':
+          description: ''
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: hotelId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: bookingid
+        in: path
+        required: true
+        schema:
+          type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+tags:
+  - name: Hotel Search
+  - name: Accounts
+  - name: Hotel Management
+  - name: Flight Search
+  - name: Bookings Hotel
+  - name: Bookings Flight
+  - name: Checkout
+  - name: Suggestions
+  - name: Pdf Invoice
